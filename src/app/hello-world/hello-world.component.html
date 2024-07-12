@@ -1,0 +1,19 @@
+<div class="container">
+    <header>    
+        <h1>{{title}}</h1>
+    </header>
+
+    <nav>
+        <button pButton type="button" label = "Home" routerLink="/hello-world"></button>
+        <button pButton type="button" label = "Perfil" routerLink="/profile"></button>
+        <button pButton type="button" label = "Videos" routerLink="/video"></button> 
+    </nav>
+
+    <section class="content">
+        <router-outlet></router-outlet>
+    </section>
+
+    <footer>
+        <p>&copy; 2024.1 TIME - UNB-TV</p>
+    </footer>
+</div>
