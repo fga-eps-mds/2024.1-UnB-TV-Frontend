@@ -1,74 +1,91 @@
 <div class="w-full flex flex-col min-h-screen justify-between">
-  <nav class="w-full fixed top-0 left-0 z-50 bg-white">
+  <nav class="w-full fixed top-0 left-0 z-50">
     <div class="pt-10 flex justify-center items-center">
-      <img
-        alt="simbolo-unb"
-        src="../../../assets/Icone-unbtv.svg"
-        class="h-10"
-      />
+      <a [routerLink]="['/catalog']">
+        <img alt="simbolo-unb" src="../../../assets/Icone-unbtv.svg" class="h-10" />
+      </a>
     </div>
-    <div
-      *ngIf="
+
+
+
+   
+
+
+    <div *ngIf="
         getActualRoute() !== '/login' && getActualRoute() !== '/loginsocial'
-      "
-    >
+      ">
       <div class="flex flex-row items-center justify-center pl-3">
-        <ul class="flex flex-row gap-1 text-xs">
-          <div *ngIf="getActualRoute() === '/stream'">
-            <li class="font-bold text-[#00A550]">
-              <a [routerLink]="['/stream']">Agora na TV</a>
-            </li>
+        <div class="flex flex-col">
+          <div class="flex self-end mr-10 mb-4 justify-end"> 
+            
+             <!-- Alternador de Tema --->
+              <div class="flex flex-row items-center gap-2">
+                <img alt="sol" *ngIf="!isDarkMode" src="../../../assets/sun.svg" class="h-7" />
+                <img alt="lua" *ngIf="isDarkMode" src="../../../assets/moon.svg" class="h-7" />
+                <label class="switch">
+                  <input 
+                  type="checkbox" 
+                  [checked]="isDarkMode" 
+                  (change)="toggleDarkMode($event)" />
+                  <span class="slider"></span>
+                </label>
+              </div>
+
           </div>
-          <div *ngIf="getActualRoute() !== '/stream'">
-            <li class="text-blue-brand">
-              <a [routerLink]="['/stream']">Agora na TV</a>
-            </li>
-          </div>
-          <div class="mx-2 text-blue-brand">|</div>
-          <div *ngIf="getActualRoute() === '/catalog'">
-            <li class="font-bold text-[#00A550]">
-              <a [routerLink]="['/catalog']">Programas</a>
-            </li>
-          </div>
-          <div *ngIf="getActualRoute() !== '/catalog'">
-            <li class="text-blue-brand">
-              <a [routerLink]="['/catalog']">Programas</a>
-            </li>
-          </div>
-          <div class="mx-2 text-blue-brand">|</div>
-          <div *ngIf="getActualRoute() === '/sua-unbtv'">
-            <li class="font-bold text-[#00A550]">
-              <a [routerLink]="['/sua-unbtv']">Sua UnBTV</a>
-            </li>
-          </div>
-          <div *ngIf="getActualRoute() !== '/sua-unbtv'">
-            <li class="text-blue-brand">
-              <a [routerLink]="['/sua-unbtv']">Sua UnBTV</a>
-            </li>
-          </div>
-          <div class="mx-2 text-blue-brand">|</div>
-          <div *ngIf="getActualRoute() === '/suggestAgenda'">
-            <li class="font-bold text-[#00A550]">
-              <a [routerLink]="['/suggestAgenda']">Pauta</a>
-            </li>
-          </div>
-          <div *ngIf="getActualRoute() !== '/suggestAgenda'">
-            <li class="text-blue-brand">
-              <a [routerLink]="['/suggestAgenda']">Pauta</a>
-            </li>
-          </div>
-        </ul>
-        <div class="card flex justify-content-center mx-2">
-          <p-menu #menu [model]="items" [popup]="true"></p-menu>
-          <button
-            pButton
-            type="button"
-            (click)="menu.toggle($event)"
-            label="&#9776;"
-            class="menu-button"
-          ></button>
-          <div class="notification-badge-wrapper" *ngIf="hasNotifications">
-            <div class="notification-badge"></div> <!-- Badge sem o número -->
+          
+          <div class="flex flex-row items-center justify-center">
+            <ul class="flex flex-row gap-1 text-xs">
+              <div *ngIf="getActualRoute() === '/stream'">
+                <li class="font-bold text-[#00A550]">
+                  <a [routerLink]="['/stream']">Agora na TV</a>
+                </li>
+              </div>
+              <div *ngIf="getActualRoute() !== '/stream'">
+                <li class="text-blue-brand">
+                  <a [routerLink]="['/stream']">Agora na TV</a>
+                </li>
+              </div>
+              <div class="mx-2 text-blue-brand">|</div>
+              <div *ngIf="getActualRoute() === '/catalog'">
+                <li class="font-bold text-[#00A550]">
+                  <a [routerLink]="['/catalog']">Programas</a>
+                </li>
+              </div>
+              <div *ngIf="getActualRoute() !== '/catalog'">
+                <li class="text-blue-brand">
+                  <a [routerLink]="['/catalog']">Programas</a>
+                </li>
+              </div>
+              <div class="mx-2 text-blue-brand">|</div>
+              <div *ngIf="getActualRoute() === '/sua-unbtv'">
+                <li class="font-bold text-[#00A550]">
+                  <a [routerLink]="['/sua-unbtv']">Sua UnBTV</a>
+                </li>
+              </div>
+              <div *ngIf="getActualRoute() !== '/sua-unbtv'">
+                <li class="text-blue-brand">
+                  <a [routerLink]="['/sua-unbtv']">Sua UnBTV</a>
+                </li>
+              </div>
+              <div class="mx-2 text-blue-brand">|</div>
+              <div *ngIf="getActualRoute() === '/suggestAgenda'">
+                <li class="font-bold text-[#00A550]">
+                  <a [routerLink]="['/suggestAgenda']">Pauta</a>
+                </li>
+              </div>
+              <div *ngIf="getActualRoute() !== '/suggestAgenda'">
+                <li class="text-blue-brand">
+                  <a [routerLink]="['/suggestAgenda']">Pauta</a>
+                </li>
+              </div>
+            </ul>
+            <div class="card flex justify-content-center mx-2">
+              <p-menu #menu [model]="items" [popup]="true"></p-menu>
+              <button pButton type="button" (click)="menu.toggle($event)" label="&#9776;" class="menu-button"></button>
+              <div class="notification-badge-wrapper" *ngIf="hasNotifications">
+                <div class="notification-badge"></div> <!-- Badge sem o número -->
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -77,69 +94,47 @@
   <div class="flex-grow p-3 mt-40 mb-auto">
     <ng-content></ng-content>
   </div>
-  <footer
-    class="flex flex-row items-center justify-center gap-3 py-6 px-3 md:py-10 sticky bottom-0 bg-white"
-  >
+  <footer class="flex flex-row items-center justify-center gap-3 py-6 px-3 md:py-10 sticky bottom-0">
     <div>
-      <a
-        [href]="
-          mobileDevide ? 'tel:+556131072775' : 'https://unbtv.unb.br/contato'
-        "
-        target="_blank"
-        id="contact_link"
-        rel="noopener"
-      >
+      <a [href]="
+            mobileDevide ? 'tel:+556131072775' : 'https://unbtv.unb.br/contato'
+          " target="_blank" id="contact_link" rel="noopener" class="tooltip-container">
         <img alt="telefone" src="../../../assets/telefone.svg" />
+        <span class="tooltip">Contato</span>
       </a>
     </div>
     <div>
-      <a
-        href="https://www.unbtv.unb.br"
-        target="_blank"
-        id="website_link"
-        rel="noopener"
-      >
+      <a href="https://www.unbtv.unb.br" target="_blank" id="website_link" rel="noopener" class="tooltip-container">
         <img alt="website" src="../../../assets/website.svg" />
+        <span class="tooltip">UnB-TV</span>
       </a>
     </div>
     <div>
-      <a
-        href="https://www.youtube.com/@UnBTV"
-        target="_blank"
-        id="youtube_link"
-        rel="noopener"
-      >
+      <a href="https://www.youtube.com/@UnBTV" target="_blank" id="youtube_link" rel="noopener"
+        class="tooltip-container">
         <img alt="youtube" src="../../../assets/youtube.svg" />
+        <span class="tooltip">YouTube</span>
       </a>
     </div>
     <div>
-      <a
-        href="https://www.instagram.com/unbtv/"
-        target="_blank"
-        id="instagram_link"
-        rel="noopener"
-      >
+      <a href="https://www.instagram.com/unbtv/" target="_blank" id="instagram_link" rel="noopener"
+        class="tooltip-container">
         <img alt="instagram" src="../../../assets/instagram.svg" />
+        <span class="tooltip">Instagram</span>
       </a>
     </div>
     <div>
-      <a
-        href="https://www.facebook.com/UnBTV"
-        target="_blank"
-        id="facebook_link"
-        rel="noopener"
-      >
+      <a href="https://www.facebook.com/UnBTV" target="_blank" id="facebook_link" rel="noopener"
+        class="tooltip-container">
         <img alt="facebook" src="../../../assets/facebook.svg" />
+        <span class="tooltip">Facebook</span>
       </a>
     </div>
     <div>
-      <a
-        href="https://www.twitter.com/unb_tv"
-        target="_blank"
-        id="twitter_link"
-        rel="noopener"
-      >
+      <a href="https://www.twitter.com/unb_tv" target="_blank" id="twitter_link" rel="noopener"
+        class="tooltip-container">
         <img alt="x" src="../../../assets/x.svg" />
+        <span class="tooltip">X</span>
       </a>
     </div>
   </footer>
